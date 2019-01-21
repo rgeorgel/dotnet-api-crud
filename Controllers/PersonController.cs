@@ -8,7 +8,8 @@ using verbs.services;
 
 namespace verbs.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -18,7 +19,6 @@ namespace verbs.Controllers
             _personService = personService;
         }
 
-        // GET api/values
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,7 +26,6 @@ namespace verbs.Controllers
             return Ok(persons);
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -36,7 +35,6 @@ namespace verbs.Controllers
             return Ok(person); 
         }
 
-        // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody] Person person)
         {
@@ -44,7 +42,6 @@ namespace verbs.Controllers
             return new ObjectResult(_personService.Create(person));
         }
 
-        // PUT api/values/5
         [HttpPut]
         public IActionResult Put([FromBody] Person person)
         {
@@ -52,7 +49,6 @@ namespace verbs.Controllers
             return new ObjectResult(_personService.Update(person));
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {

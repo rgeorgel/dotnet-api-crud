@@ -9,13 +9,13 @@ Simple CRUD to test some implementation on dotnet core
 ```
 
 ## List All
-* **GET** - https://localhost:5001/api/person
+* **GET** - https://localhost:5001/api/v1/person
 
 ## Find by Id
-* **GET** - https://localhost:5001/api/person/1
+* **GET** - https://localhost:5001/api/v1/person/1
 
 ## Create
-* **POST** - https://localhost:5001/api/person
+* **POST** - https://localhost:5001/api/v1/person
 ```
 Body
 {
@@ -27,7 +27,7 @@ Body
 ```
 
 ## Update
-* **PUT** - https://localhost:5001/api/person
+* **PUT** - https://localhost:5001/api/v1/person
 ```
 Body
 {
@@ -40,7 +40,7 @@ Body
 ```
 
 ## Delete
-* **DELETE** - https://localhost:5001/api/person/1
+* **DELETE** - https://localhost:5001/api/v1/person/1
 
 
 
