@@ -10,10 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using verbs.Models.context;
-using verbs.services;
-using verbs.services.implementations;
 using Microsoft.EntityFrameworkCore;
+using verbs.Models.context;
+using verbs.Business;
+using verbs.Business.implementations;
+using verbs.Repository;
+using verbs.Repository.implementations;
+
+
 
 namespace verbs
 {
@@ -33,7 +37,9 @@ namespace verbs
 
             services.AddDbContext<MySQLContext>(options => options.UseMySql(configuration));
 
-            services.AddScoped<IPersonService, PersonServiceImpl>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddApiVersioning();

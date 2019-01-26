@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using verbs.Models;
-using verbs.services;
+using verbs.Business;
 
 namespace verbs.Controllers
 {
@@ -13,23 +13,23 @@ namespace verbs.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private IPersonService _personService;
+        private IPersonBusiness _personBusiness;
 
-        public PersonController(IPersonService personService) {
-            _personService = personService;
+        public PersonController(IPersonBusiness personBusiness) {
+            _personBusiness = personBusiness;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var persons = _personService.FindAll();
+            var persons = _personBusiness.FindAll();
             return Ok(persons);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
 
             if (person == null) return NotFound();
             return Ok(person); 
@@ -39,20 +39,20 @@ namespace verbs.Controllers
         public IActionResult Post([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Update(person));
+            return new ObjectResult(_personBusiness.Update(person));
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using verbs.Models;
 using verbs.Models.context;
 
-namespace verbs.services.implementations
+namespace verbs.Repository.implementations
 {
-    public class PersonServiceImpl : IPersonService
+    public class PersonRepositoryImpl : IPersonRepository
     {
         private MySQLContext _context;
 
-        public PersonServiceImpl(MySQLContext context) {
+        public PersonRepositoryImpl(MySQLContext context) {
             _context = context;
         }
 
@@ -65,7 +65,7 @@ namespace verbs.services.implementations
             return person;
         }
 
-        private bool Exist(long? id)
+        public bool Exist(long? id)
         {
             return _context.Persons.Any(p => p.Id.Equals(id));
         }
